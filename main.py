@@ -28,14 +28,14 @@ url = "https://newyork.craigslist.org/search/astoria-ny/apa#search=2~gallery~81"
 driver.get(url)
 
 # Wait for the page to load
-sleep(15)
+sleep(5)
 
 # Get the page source and parse it with BeautifulSoup
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 divs = soup.find_all('div', class_='cl-search-result cl-search-view-mode-gallery')
 for d in divs:
-    link = d.find('a', class_='result-title hdrlnk')
-    print(link.text)
+    print(d['data-pid'])
+    link = d.find('a', class_='cl-app-anchor')
     print(link['href'])
     print("=====================================")
 # Close the driver
